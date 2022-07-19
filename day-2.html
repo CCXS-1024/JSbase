@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
+</head>
+
+<body>
+  <input type="button" value="点击切换" class="btn">
+</body>
+<script>
+  const btn = document.querySelector('.btn')
+  let age = undefined;
+  const obj = {
+    name: 'ccxs'
+  }
+  obj[age] = 12;
+  console.log(obj);
+  btn.index = 0;
+  btn.onclick = function () {
+    let arr = ['red', 'green', 'black', 'blue', 'white'];
+    document.body.style.backgroundColor = arr[this.index++]
+    if (this.index === arr.length) {
+      this.index = 0;
+    }
+  }
+</script>
+
+</html>

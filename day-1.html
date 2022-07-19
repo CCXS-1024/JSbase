@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .newBox {
+      width: 200px;
+      padding: 10px;
+      margin: 0 auto;
+      border: 1px solid black;
+
+    }
+
+    .newBox li {
+      height: 40px;
+      width: 200px;
+      line-height: 40px;
+
+      border-bottom: 1px dotted orange;
+    }
+
+    .newBox li:nth-child(2n) {
+      background-color: aqua;
+    }
+
+    .tabBox {
+      position: relative;
+      width: 500px;
+      margin: 0 auto;
+    }
+
+    .navBox {
+      margin-top: 20px;
+      display: flex;
+    }
+
+    .navBox li {
+      padding: 10px 0;
+      width: 100px;
+      text-align: center;
+      border: 1px solid black;
+      margin-right: 10px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .navBox li.active {
+      border-bottom-color: #FFF;
+    }
+
+    .tabBox>div {
+      position: absolute;
+      top: 44px;
+      height: 300px;
+      width: 100%;
+
+      border: 1px solid black;
+
+      display: none;
+      z-index: -55;
+    }
+
+    .tabBox>div.active {
+      display: block !important;
+    }
+  </style>
+</head>
+
+<body>
+  <ul class="newBox">
+    <li>11111</li>
+    <li>22222222</li>
+    <li>333333</li>
+    <li>4444444</li>
+    <li>555555</li>
+  </ul>
+  <hr>
+  <div class="tabBox">
+    <ul class="navBox">
+      <li class="active">编程</li>
+      <li>读书</li>
+      <li>DOTA</li>
+    </ul>
+    <div class="active">游戏人生</div>
+    <div>读书人生</div>
+    <div>DOTA人生</div>
+  </div>
+</body>
+<script>
+  const newList = document.querySelectorAll('.newBox li')
+  for (let i = 0; i < newList.length; i++) {
+    newList[i].onmouseover = function () {
+      newList[i].style.backgroundColor = 'red'
+    }
+
+    newList[i].onmouseout = function () {
+      if ((i + 1) % 2) {
+        newList[i].style.backgroundColor = '#fff'
+      } else {
+        newList[i].style.backgroundColor = 'aqua';
+      }
+    }
+
+  }
+
+  const navList = document.querySelectorAll('.navBox li')
+  const contextList = document.querySelectorAll('.tabBox > div')
+
+  for (var i = 0; i < navList.length; i++) {
+    navList[i].onclick = (function (i) {
+      return function () {
+        chageTab(i);
+      }
+    })(i)
+  }
+
+  function chageTab(clickIndex) {
+    console.log(clickIndex);
+    for (let i = 0; i < navList.length; i++) {
+      navList[i].classList.remove('active')
+      contextList[i].classList.remove('active')
+    }
+    navList[clickIndex].classList.add('active')
+    contextList[clickIndex].classList.add('active')
+  }
+</script>
+
+</html>

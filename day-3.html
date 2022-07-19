@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script>
+    const array1 = [1, 30, 30, 1, 44, 4, 21, 4, 21, 100000];
+    // 数组去重方案一
+    // const newArr = [];
+    // array1.forEach(item=>{
+    //   if(!newArr.includes(item)){
+    //     newArr.push(item)
+    //   }
+    // })
+    // console.log(newArr);
+
+
+    // 方法二 
+    for (let i = 0; i < array1.length; i++) {
+      let item = array1[i]
+      for (let j = i + 1; j < array1.length; j++) {
+        let item2 = array1[j]
+        if (item === item2) {
+          array1.splice(j, 1);
+          j--;  //防止数组塌陷
+        }
+      }
+    }
+
+    let obj = {};
+    for (let i = 0; i < array1.length; i++) {
+      let item = array1[i];
+      if (obj[item] !== undefined) {
+        array1.splice(i, 1);
+        i--;
+        continue;
+      }
+      obj[item] = item
+
+    }
+    // console.log(array1);
+
+    let newArr = []
+    array1.forEach(item => {
+      if (!newArr.includes(item)) {
+        newArr.push(item)
+      }
+    })
+    console.log(newArr);
+
+    function unique(ary) {
+      let obj = {};
+      for (let i = 0; i < ary.length; i++) {
+        let item = ary[i];
+        if (obj[item] !== undefined) {
+          ary[i] = ary[ary.length - 1];
+          ary.length--;
+          i--;
+          continue;
+        }
+        obj[item] = item;
+      }
+      return ary;
+    }
+    console.log(unique(array1).sort((a, b) => a - b))
+  </script>
+</body>
+
+</html>
