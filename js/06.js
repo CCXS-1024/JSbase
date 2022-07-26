@@ -12,3 +12,15 @@ newDiv.appendChild(text) // 添加文本节点
 // document.body.appendChild(newDiv) // 把newDiv 插入到body最后
 
 document.body.insertBefore(newDiv, haha) // 把newDiv 插入到hahah之前
+
+
+let i= 20;   //18 18
+
+
+i =19 //16
+
+i =18 // 14
+
+i =19 //14
+
+ //19
